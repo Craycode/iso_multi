@@ -13,6 +13,12 @@ var Client = IgeClass.extend({
 		// Set FPS.
 		ige.setFps(30);
 
+		// Enable networking
+		ige.addComponent(IgeSocketIoComponent);
+
+		// Implement our game methods
+		self.implement(ClientNetworkEvents);
+
 		// Load the textures we want to use
 		self.textures = {
 			guy: new IgeTexture('./assets/textures/tiles/other4.png'),
@@ -24,6 +30,18 @@ var Client = IgeClass.extend({
 			ige.start(function(success) {
 				// Check if the engine started successfully
 				if (success) {
+					ige.network.start(Config.SERVER_URI, function() {
+						// Define network command listeners
+						ige.network.define('test', self._onTest);
+
+						// Send the server a test message
+						ige.network.send('test', {moo: 'Some test data!'});
+
+						// Send the server a request (gets a callback when the server responds!)
+						ige.network.request('testRequest', {hello: 100}, function(data) {
+							console.log('Request response received from server via callback with data:', data);
+						});
+					});
 
 					// Create scene.
 					self.scene1 = new IgeScene2d().id('scene1');
