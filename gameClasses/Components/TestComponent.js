@@ -33,3 +33,7 @@ TestComponent = IgeClass.extend({
 		console.log(this._options);
 	}
 });
+
+if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') {
+	module.exports = TestComponent;
+}
