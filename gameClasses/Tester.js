@@ -1,22 +1,24 @@
 var Tester = IgeEntity.extend({
 	classId: 'Tester',
-	_handleTexturesLoaded: function() {
-		this
-			.addComponent(IgeAnimationComponent)
-			.addComponent(TestComponent, {opacity_step: 0.02})
-			.animation.select('right')
-			.texture(this.textures.textureCellSheet)
-			.cell(1);
-	},
 	init: function() {
-		IgeEntity.prototype.init.call(this);
+		var self = this;
+		IgeEntity.prototype.init.call(self);
+
+		Tester.prototype._handleTexturesLoaded = function() {
+			self
+				.addComponent(IgeAnimationComponent)
+				.addComponent(TestComponent, {opacity_step: 0.02})
+				.animation.select('right')
+				.texture(self.textures.textureCellSheet)
+				.cell(1);
+		};
 
 		if (!ige.isServer) {
-			this.textures = {
+			self.textures = {
 				textureCellSheet: new IgeCellSheet('./assets/textures/sprites/newchar01-1.png', 3, 4)
 			};
 
-			this.textures.textureCellSheet.on('loaded', this._handleTexturesLoaded);
+			self.textures.textureCellSheet.on('loaded', self._handleTexturesLoaded);
 		}
 	}
 });
