@@ -19,7 +19,6 @@ var Server = IgeClass.extend({
 				// Add the network stream component
 				ige.network.addComponent(IgeStreamComponent)
 					.stream.sendInterval(30)
-					.stream.renderLatency(100)
 					.stream.start();
 
 				// Accept incoming network connections
@@ -31,12 +30,12 @@ var Server = IgeClass.extend({
 				// Create main viewport.
 				self.vp1 = new IgeViewport()
 					.id('vp1')
-					.autoSize(true)
+					.autoSize(false)
+					.width(Config.VP_WIDTH)
+					.height(Config.VP_HEIGHT)
 					.scene(self.scene1)
-					.drawBounds(true)
-					.drawBoundsData(true)
 					.mount(ige);
-				
+
 				self.obj = [];
 
 				self.obj[0] = new Tester()
@@ -49,7 +48,7 @@ var Server = IgeClass.extend({
 		// Add the server-side game methods / event handlers
 		self.implement(ServerNetworkEvents);
 		// Add the networking component and define commands
-		ige.addComponent(IgeSocketIoComponent)
+		ige.addComponent(IgeNetIoComponent)
 			.network.define('test', self._onTest)
 			.network.define('testRequest', self._onTestRequest)
 

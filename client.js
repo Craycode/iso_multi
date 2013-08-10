@@ -24,7 +24,7 @@ var Client = IgeClass.extend({
 			});
 
 			ige.network.addComponent(IgeStreamComponent)
-				.stream.renderLatency(160)
+				.stream.renderLatency(80)
 				.stream.on('entityCreated', self._handleEntityCreated);
 
 			// Create scene.
@@ -34,11 +34,12 @@ var Client = IgeClass.extend({
 			self.vp1 = new IgeViewport().id('vp1')
 				.addComponent(IgeMousePanComponent)
 				.mousePan.enabled(true)
-				.autoSize(true)
+				.autoSize(false)
+				.width(Config.VP_WIDTH)
+				.height(Config.VP_HEIGHT)
 				.scene(self.scene1)
-				.drawBounds(true)
-				.drawBoundsData(true)
-				.drawMouse(true)
+				.drawBounds(false)
+				.drawBoundsData(false)
 				.mount(ige);
 		};
 
@@ -59,10 +60,10 @@ var Client = IgeClass.extend({
 		ige.createFrontBuffer(true);
 
 		// Set FPS.
-		ige.setFps(30);
+		ige.setFps(60);
 
 		// Enable networking
-		ige.addComponent(IgeSocketIoComponent);
+		ige.addComponent(IgeNetIoComponent);
 
 		// Implement our game methods
 		self.implement(ClientNetworkEvents);

@@ -20,6 +20,9 @@ var Tester = IgeEntity.extend({
 
 			self.textures.textureCellSheet.on('loaded', self._handleTexturesLoaded);
 		}
+	},
+	tick: function(ctx) {
+		IgeEntity.prototype.tick.call(this, ctx);
 	}
 });
 
