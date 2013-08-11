@@ -13,12 +13,49 @@
 
 		<!-- STYLES -->
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Fauna+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 		<!-- Isogenic Loader -->
-		<script type="text/javascript">var igeRoot = '../ige/engine/';</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="assets/ui.js"></script>
+		<script type = "text/javascript" > var igeRoot = '../ige/engine/';</script>
 		<script type="text/javascript" src="../ige/engine/loader.js"></script>
+		<style>
+			body {
+				color: white;
+				background-color: white;
+				font-family:'Fauna One', serif;
+				font-size: 10px;
+				background-image:url('assets/textures/ffantasy.jpg');
+				background-size:100% 100%;
+				background-repeat: no-repeat;
+				opacity:1.0;
+				filter:alpha(opacity=100); /* For IE8 and earlier */
+			}
+			#head-login {
+				text-align: right;
+				padding: 5px 20px 0px;
+			}
+			#igeFrontBuffer {
+
+			}
+			#canvas-container {
+				background-color: white;
+				opacity:0.90;
+				filter:alpha(opacity=90); /* For IE8 and earlier */
+			}
+		</style>
 	</head>
 	<body>
+		<div id="head-login">
+			<input id="input-login" type="text" placeholder="Enter login here">
+			<input id="input-password" type="password" placeholder="Enter password here">
+			<button type="button" id="input-button">Login</button>
+		</div>
+		<hr>
+		<div id="canvas-container">
+			<canvas id="igeFrontBuffer" height="0"></canvas>
+		</div>
 		<div class="igeLoading loadingFloat">
 			<div class="loadingLogo"></div>
 			<div class="loadingCircle"></div>

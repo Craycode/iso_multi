@@ -57,10 +57,11 @@ var Client = IgeClass.extend({
 		ige.showStats(1);
 
 		// Create the HTML canvas
-		ige.createFrontBuffer(true);
+		//ige.createFrontBuffer(true);
+		ige.canvas(document.getElementById('igeFrontBuffer'), true);
 
 		// Set FPS.
-		ige.setFps(60);
+		ige.setFps(Config.FPS);
 
 		// Enable networking
 		ige.addComponent(IgeNetIoComponent);

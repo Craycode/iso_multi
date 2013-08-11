@@ -7,7 +7,8 @@ var Config = {
 	SERVER_PORT: SERVER_PORT,
 	SERVER_URI: SERVER_PROTOCOL+'://'+SERVER_HOST+':'+SERVER_PORT,
 	VP_WIDTH: 800,
-	VP_HEIGHT: 600
+	VP_HEIGHT: 600,
+	FPS: 60
 };
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') {
