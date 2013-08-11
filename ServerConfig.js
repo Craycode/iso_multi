@@ -5,6 +5,15 @@ var config = {
 		 */
 		{name: 'Config', path: './config/main'},
 		/**
+		 * Models
+		 */
+		{name: 'Model', path: './models/Model'},
+		{name: 'User', path: './models/User'},
+		/**
+		 * Mongoose
+		 */
+		{name: 'Mongoose', path: './libraries/Mongoose'},
+		/**
 		 * Other.
 		 */
 		{name: 'ServerNetworkEvents', path: './gameClasses/ServerNetworkEvents'},
@@ -13,4 +22,6 @@ var config = {
 	]
 };
 
-if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = config; }
+if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') {
+	module.exports = config;
+}

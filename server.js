@@ -2,8 +2,24 @@ var Server = IgeClass.extend({
 	classId: 'Server',
 	Server: true,
 	init: function(options) {
-		ige.log('Initialising server');
 		var self = this;
+		ige.log('Initialising server');
+
+		Server.prototype._handleDbConnection = function() {
+			self.log('Mongoose connection opened!');
+
+			var user = new User('520784413ac690fc1b000002');
+			console.log(user);
+			
+
+		};
+
+		Server.prototype._mongooseConnect = function(url, open_callback) {
+			Mongoose.connect(url);
+			self._db = Mongoose.connection;
+			self._db.on('error', console.error.bind(console, 'Mongoose connection error:'));
+			self._db.once('open', open_callback);
+		};
 
 		Server.prototype._handleNetworkStart = function() {
 			ige.log('Handling network start');
@@ -42,11 +58,14 @@ var Server = IgeClass.extend({
 					.id('tester1')
 					.streamMode(1)
 					.mount(self.scene1);
+
 			}
 		};
 
 		// Add the server-side game methods / event handlers
 		self.implement(ServerNetworkEvents);
+		// Connect to database
+		self._mongooseConnect(Config.DB.CONNECTION_STRING, self._handleDbConnection);
 		// Add the networking component and define commands
 		ige.addComponent(IgeNetIoComponent)
 			.network.define('test', self._onTest)
